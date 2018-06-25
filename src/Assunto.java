@@ -53,4 +53,5 @@ public void setTipoAssunto(TipoAssunto tipoAssunto){
 	public int getCont() {
 		return this.cont;
 	}
+
 }

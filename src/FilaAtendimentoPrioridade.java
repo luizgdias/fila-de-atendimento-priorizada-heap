@@ -9,8 +9,8 @@ public class FilaAtendimentoPrioridade {
 		this.tamanhoFila = -1;
 	}
 
-	public void recepcionar(Cliente cliente, ListaAssuntos assuntosCliente, ListaAssuntos AssuntosPadrao, int horaChegada) {
-		Atendimento novo = new Atendimento(cliente, assuntosCliente, horaChegada);
+	public void recepcionar(Cliente cliente, ListaAssuntos assuntosCliente, ListaAssuntos AssuntosPadrao, int horaChegada, int horaAtendimento) {
+		Atendimento novo = new Atendimento(cliente, assuntosCliente, horaChegada, horaAtendimento);
 		System.out.println("\nComando: ***Recepcionar Cliente***\n");
 		if (tamanhoFila == atendimentos.length-1) {
 			System.out.println("A fila de clientes está cheia!");
@@ -82,6 +82,8 @@ public class FilaAtendimentoPrioridade {
 				System.out.println("Todos os clientes já foram atendidos!");
 			}else {
 				incrementaEstatistica(atendimentos[0], listaPadrao);
+				//Atendimento backup = atendimentos[0];
+				//Backup.insereBackup(backup);
 				atendimentos[0] = null;
 				
 				for(int x = 0; x < tamanhoFila; x++) {
@@ -121,8 +123,10 @@ public class FilaAtendimentoPrioridade {
 			System.out.println("\ncomando: ***Gerar Estatística*** "+listaPadrao.qtdAssuntos);
 			
 			for (int i = 0; i < listaPadrao.qtdAssuntos; i++) {
+	
+				//tempoMedio = ((listaPadrao.primeiroAssunto.duracaoAtendimentoAssunto)/listaPadrao.primeiroAssunto.cont);
 				System.out.println("Atendimento: "+listaPadrao.primeiroAssunto.descricao+ "		| Urgência: "+ listaPadrao.primeiroAssunto.tipoAssunto.urgencia +
-						"	| Qtd atendimentos realizados: "+listaPadrao.primeiroAssunto.cont);
+						"	| Qtd atendimentos realizados: "+listaPadrao.primeiroAssunto.cont+ "	| Tempo Médio: "+ listaPadrao.primeiroAssunto.duracaoAtendimentoAssunto);
 				listaPadrao.primeiroAssunto = listaPadrao.primeiroAssunto.proximoAssunto;
 			}
 		}

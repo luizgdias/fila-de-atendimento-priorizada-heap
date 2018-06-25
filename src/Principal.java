@@ -1,28 +1,28 @@
 public class Principal {
 
 	public static void main(String[] args) {
-		TipoAssunto a = new TipoAssunto("a", "pessoa física", 5); 
-		TipoAssunto b = new TipoAssunto("b", "pessoa jurídica", 10);
-		TipoAssunto c = new TipoAssunto("c", "não correntista", 15);
+		TipoAssunto a = new TipoAssunto("a", "pessoa física", 2); 
+		TipoAssunto b = new TipoAssunto("b", "pessoa jurídica", 5);
+		TipoAssunto c = new TipoAssunto("c", "não correntista", 10);
 		
 		Assunto saquePf = new Assunto();
 		saquePf.setTipoAssunto(a);
 		saquePf.setDescricao("saque pf	");
-		saquePf.setDuracaoAtendimentoAssunto(4);
+		saquePf.setDuracaoAtendimentoAssunto(40);
 		saquePf.setProvidencia("sacar");
 		saquePf.setProximoAssunto(null);
 		
 		Assunto depositoPj = new Assunto();
 		depositoPj.setTipoAssunto(b);
 		depositoPj.setDescricao("deposito pj");
-		depositoPj.setDuracaoAtendimentoAssunto(3);
+		depositoPj.setDuracaoAtendimentoAssunto(30);
 		depositoPj.setProvidencia("depositar");
 		depositoPj.setProximoAssunto(null);
 		
 		Assunto pagamento = new Assunto();
 		pagamento.setTipoAssunto(c);
 		pagamento.setDescricao("pagamento nc");
-		pagamento.setDuracaoAtendimentoAssunto(3);
+		pagamento.setDuracaoAtendimentoAssunto(20);
 		pagamento.setProvidencia("pagar");
 		pagamento.setProximoAssunto(null);
 		
@@ -51,9 +51,9 @@ public class Principal {
 		assuntosKelli.insere(assuntosKelli, saquePf);
 		
 		FilaAtendimentoPrioridade fila = new FilaAtendimentoPrioridade(100);
-		fila.recepcionar(LuizC, assuntosLuizC, listaPadrao, 11);
-		fila.recepcionar(Carlos, assuntosCarlos, listaPadrao, 12);
-		fila.recepcionar(Kelli, assuntosKelli, listaPadrao, 13);
+		fila.recepcionar(LuizC, assuntosLuizC, listaPadrao, 11, 12);
+		fila.recepcionar(Carlos, assuntosCarlos, listaPadrao, 12, 13);
+		fila.recepcionar(Kelli, assuntosKelli, listaPadrao, 13, 14);
 		
 		
 		
@@ -63,8 +63,10 @@ public class Principal {
 		fila.encerrarAtendimento(listaPadrao);
 		fila.encerrarAtendimento(listaPadrao);
 		fila.gerarEstatistica(listaPadrao);
+		c.alterarPrioridadeTipoAssunto(9); //altera a prioridade do tipo de assunto 
 		fila.encerrarAtendimento(listaPadrao);
 		fila.gerarEstatistica(listaPadrao);
+		Backup.mostraHistorico();
 		//listaPadrao.imprimeListaAssuntos();
 		//assuntosLuizC.imprimeListaAssuntos();
 		//assuntosKelli.imprimeListaAssuntos();

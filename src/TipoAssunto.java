@@ -8,4 +8,8 @@ public class TipoAssunto {
 			this.titulo		= titulo;
 			this.urgencia	=	urgencia;
 		}
+
+		public void alterarPrioridadeTipoAssunto(int urgencia) {
+			this.urgencia = urgencia;
+		}
 }
